@@ -4,17 +4,12 @@ import math
 
 def get_SAD(left_matrix, right_matrix):
     """ 
-    Return the dissimilarity between 2 parts (2 matrices) of 2 images.
+    Return the dissimilarity between 2 parts (2 matrices).
     The dissimilarity is calculated according to the SAD formula.
 
     Args:
-        left_image(np.ndarray): 2D array representing an image in gray.
-        right_image(np.ndarray): 2D array representing an image in gray.
-        left_pixel_considered(tuple): coordinates of the left pixel considered as center
-            of the first matrix from left image.
-        right_pixel_considered(tuple): coordinates of the left pixel considered as center
-            of the first matrix from right image.
-        neighbourhood(int): number of pixels considered in the neighbourhood for SAD formula.
+        left_matrix(np.ndarray): 2D array representing a part of an image in gray.
+        right_matrix(np.ndarray): 2D array representing a part of an image in gray.
 
     Returns:
         dissimilarity(int): dissimilarity calculated between the 2 parts.
@@ -35,17 +30,12 @@ def get_SAD(left_matrix, right_matrix):
 
 def get_MSE(left_matrix, right_matrix):
     """ 
-    Return the dissimilarity between 2 parts (2 matrices) of 2 images.
-    The dissimilarity is calculated according to the SAD formula.
+    Return the dissimilarity between 2 parts (2 matrices).
+    The dissimilarity is calculated according to the MSE formula.
 
     Args:
-        left_image(np.ndarray): 2D array representing an image in gray.
-        right_image(np.ndarray): 2D array representing an image in gray.
-        left_pixel_considered(tuple): coordinates of the left pixel considered as center
-            of the first matrix from left image.
-        right_pixel_considered(tuple): coordinates of the left pixel considered as center
-            of the first matrix from right image.
-        neighbourhood(int): number of pixels considered in the neighbourhood for SAD formula.
+        left_matrix(np.ndarray): 2D array representing a part of an image in gray.
+        right_matrix(np.ndarray): 2D array representing a part of an image in gray.
 
     Returns:
         dissimilarity(int): dissimilarity calculated between the 2 parts.
@@ -66,17 +56,12 @@ def get_MSE(left_matrix, right_matrix):
 
 def get_SSD(left_matrix, right_matrix):
     """ 
-    Return the dissimilarity between 2 parts (2 matrices) of 2 images.
-    The dissimilarity is calculated according to the SAD formula.
+    Return the dissimilarity between 2 parts (2 matrices).
+    The dissimilarity is calculated according to the SSD formula.
 
     Args:
-        left_image(np.ndarray): 2D array representing an image in gray.
-        right_image(np.ndarray): 2D array representing an image in gray.
-        left_pixel_considered(tuple): coordinates of the left pixel considered as center
-            of the first matrix from left image.
-        right_pixel_considered(tuple): coordinates of the left pixel considered as center
-            of the first matrix from right image.
-        neighbourhood(int): number of pixels considered in the neighbourhood for SAD formula.
+        left_matrix(np.ndarray): 2D array representing a part of an image in gray.
+        right_matrix(np.ndarray): 2D array representing a part of an image in gray.
 
     Returns:
         dissimilarity(int): dissimilarity calculated between the 2 parts.
@@ -107,7 +92,6 @@ def get_disparity(left_image, right_image, left_pixel_considered, neighbourhood,
             get his disparity with the right image.
         neighbourhood(int): number of pixels considered in the neighbourhood for SAD formula.
         maxdisp(int): max disparity observed between the 2 images.
-        order(string): oreder of the movement. Choice between left and right.
 
     Returns:
         disparity(int): disparity of the left_point_considered with the right image.
@@ -126,7 +110,6 @@ def get_disparity(left_image, right_image, left_pixel_considered, neighbourhood,
     )
 
     disparity = 0
-    ranges = np.arange(1, maxdisp)
     for i in range(1, maxdisp):
         left_matrix = left_image[
             left_pixel_considered[0]-neighbourhood//2:left_pixel_considered[0]+neighbourhood//2+1,
@@ -175,7 +158,6 @@ def get_disparity_map(left_image, right_image, neighbourhood, maxdisp):
             right_image(np.ndarray): 2D array representing an image in gray.
             neighbourhood(int): number of pixels considered in the neighbourhood for SAD formula.
             maxdisp(int): max disparity observed between the 2 images.
-            order(string): oreder of the movement. Choice between left and right.
 
         Returns:
             disparity_map(np.ndarray): disparity map between the 2 images
